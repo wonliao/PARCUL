@@ -119,7 +119,7 @@ function list_btn_click(type) {
 
                 var value = checkedVals.join(",");
                 window.localStorage.setItem(type, value);
-            }); 
+            });
         }
     };
     
@@ -209,7 +209,7 @@ function check_notification() {
     (industry == "" || industry == null)? industry_notification = "": industry_notification = industry.split(",").length;
     (color == "" || color == null)? color_notification = "": color_notification = color.split(",").length;
 
-    $("#brand_notification").text("");
+    $("#brand_notification").text(brand_notification);
     $("#grade_notification").text(grade_notification);
     $("#place_notification").text(place_notification);
     $("#industry_notification").text(industry_notification);
