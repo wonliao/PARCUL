@@ -1,0 +1,317 @@
+<style>
+ons-list-item {
+    text-align: center;
+}
+</style>
+
+<ons-navigator title="Navigator" var="myNavigator">
+
+    <ons-page>
+
+        <ons-toolbar style="background:#6dccf3; height:15%;">
+            <div class="right" style="padding:10% 5% 0% 5%;">
+                <ons-toolbar-button onclick="menu.toggleMenu()">
+                    <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="left" >
+                <div style="padding:37% 0% 0% 18%;">
+                    <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})">
+                        <img src="images/img_logo@460x160.png" style="height:6vh;"/>
+                    </ons-toolbar-button>
+                </div>
+            </div>
+        </ons-toolbar>
+
+        <div style="height:10%;"></div>
+            
+        <ons-list style="background:rgba(0,0,0,0)">
+            <ons-list-item style="background:rgba(0,0,0,0)">
+                <div class="left" style="float:left;">
+                    <ons-back-button onclick="menu.setMainPage('page2-1.html', {closeMenu: true})">Back</ons-back-button>
+                </div>
+                <div class="center" style="text-align:center">
+                    <span class="page2_item_1" style="margin-left:-30%;">塑膠系列</span>
+                </div>
+            </ons-list-item>
+        </ons-list>
+
+
+        <ons-list class="list list--chevron">
+            <ons-list-item class="list__item list__item--chevron" onclick="list_btn_click('brand')" modifier="tappable">
+                <span class="page2_2_item_1">產品類別</span><span class="notification" id="brand_notification"></span>
+            </ons-list-item>
+            <ons-list-item class="list__item list__item--chevron" onclick="list_btn_click('grade')" modifier="tappable">
+                <span class="page2_2_item_2">等級</span><span class="notification" id="grade_notification"></span>
+            </ons-list-item>
+            <ons-list-item class="list__item list__item--chevron" onclick="list_btn_click('place')" modifier="tappable">
+                <span class="page2_2_item_3">產地</span><span class="notification" id="place_notification"></span>
+            </ons-list-item>
+            <ons-list-item class="list__item list__item--chevron" onclick="list_btn_click('industry')" modifier="tappable">
+                <span class="page2_2_item_4">用途</span><span class="notification" id="industry_notification"></span>
+            </ons-list-item>
+            <ons-list-item class="list__item list__item--chevron" onclick="list_btn_click('color')" modifier="tappable">
+                <span class="page2_2_item_5">顏色</span><span class="notification" id="color_notification"></span>
+            </ons-list-item>
+        </ons-list>
+
+        <div style="height:3%;"></div>
+
+        <div style="position:relative; width:90%; margin:5%;">
+            <div style="position:absolute; top:0; width:100%;">
+                <hr />
+            </div>
+            <div style="position:absolute; top:0; left:40%; width:20%; text-align:center; background:#f9f9f9;">
+                <span class="page2_2_item_6">或是</span>
+            </div>
+        </div>
+
+        <div style="height:5%;"></div>
+
+        <input id="search_text" type="search" class="search-input" placeholder="請輸入型號" style="width:90%; margin:5%; text-align:center;">
+
+        <ons-button class="button button--large" modifier="chevron" onclick="clear_search()" style="width:90%; margin:5%;">
+            <span class="page2_2_item_7">清除搜尋條件</span>
+        </ons-button>
+
+        <ons-button class="button button--large" modifier="chevron" onclick="search_btn_click()" style="width:90%; margin:5%;">
+            <span class="page2_2_item_8">搜尋</span>
+        </ons-button>
+
+    </ons-page>
+</ons-navigator>
+
+
+<script>
+
+  
+
+function list_btn_click(type) {
+
+    var options = {
+        animation: 'slide',
+        onTransitionEnd: function() {
+
+            var storage_items = window.localStorage.getItem(type);
+            var trigger_clas = "."+type+"Class:checkbox";
+
+            if(storage_items != "" && storage_items != null) {
+                $(trigger_clas).each(function( index ) {
+    
+                    if(storage_items.indexOf(this.name) > -1) {
+    
+                        $(this).attr("checked","checked");   
+                    }
+                });
+            }
+
+            $(trigger_clas).change(function() {
+
+                var checkedVals = $(trigger_clas+':checked').map(function() {
+                    return this.name;
+                }).get();
+
+                $("#"+type+"_notification").text(checkedVals.length);
+
+                var value = checkedVals.join(",");
+                window.localStorage.setItem(type, value);
+            }); 
+        }
+    };
+    
+    var url = "search_list/" + type + "_list.html";
+    myNavigator.pushPage(url, options);
+}
+
+function search_btn_click() {
+
+    $.blockUI({ 
+        message: '<img src="images/loading.gif" />',
+        css: { width: 0, height: 0, border: 0 },
+        overlayCSS: { opacity: 0 }
+    });
+
+    var options = {
+        animation: 'slide', // What animation to use
+        onTransitionEnd: function() {
+            get_search(function() { 
+                $.unblockUI(); 
+            });
+        }
+    };
+    myNavigator.pushPage("search.html", options);
+}
+
+function item_btn_click(index, name, place, industry, brand, grade, color, image, pdf) {
+
+    var options = {
+        animation: 'slide', // What animation to use
+        onTransitionEnd: function() {
+
+            $('.card').css("background-image", "url("+image+")");
+            $('#item_title').text(name);
+            $('#item_name').text(name);
+            $('#item_place').text(place);
+            $('#item_industry').text(industry);
+            $('#item_brand').text(brand);
+            $('#item_grade').text(grade);
+            $('#item_color').text(color);
+
+            $('#item_pdf_btn').click(function() {
+
+                var ref = window.open(pdf, '_system', 'location=yes');
+            });
+        }
+    };
+
+    myNavigator.pushPage("search_item.html", options);
+}
+
+function pdf_btn_click(pdf) {
+
+    var ref = window.open(pdf, '_system', 'location=yes');
+}
+
+
+document.addEventListener("init", function(event) {
+
+    $(".page2_2_item_1").text(translator.getStr("page2_2_item_1"));
+    $(".page2_2_item_2").text(translator.getStr("page2_2_item_2"));
+    $(".page2_2_item_3").text(translator.getStr("page2_2_item_3"));
+    $(".page2_2_item_4").text(translator.getStr("page2_2_item_4"));
+    $(".page2_2_item_5").text(translator.getStr("page2_2_item_5"));
+    $(".page2_2_item_6").text(translator.getStr("page2_2_item_6"));
+    $(".page2_2_item_7").text(translator.getStr("page2_2_item_7"));
+    $(".page2_2_item_8").text(translator.getStr("page2_2_item_8"));
+    $("#search_text").attr("placeholder", translator.getStr("search_text"));
+    
+    $(".page2_3_item_1").text(translator.getStr("page2_3_item_1"));
+    $(".page2_3_item_2").text(translator.getStr("page2_3_item_2"));
+ 
+    check_notification();
+});
+
+function check_notification() {
+
+    var brand = window.localStorage.getItem("brand");
+    var grade = window.localStorage.getItem("grade");
+    var place = window.localStorage.getItem("place");
+    var industry = window.localStorage.getItem("industry");
+    var color = window.localStorage.getItem("color");
+
+    (brand == "")? brand_notification = "": brand_notification = brand.split(",").length;
+    (grade == "")? grade_notification = "": grade_notification = grade.split(",").length;
+    (place == "")? place_notification = "": place_notification = place.split(",").length;
+    (industry == "")? industry_notification = "": industry_notification = industry.split(",").length;
+    (color == "")? color_notification = "": color_notification = color.split(",").length;
+
+    $("#brand_notification").text(brand_notification);
+    $("#grade_notification").text(grade_notification);
+    $("#place_notification").text(place_notification);
+    $("#industry_notification").text(industry_notification);
+    $("#color_notification").text(color_notification);
+}
+
+function clear_search() {
+    
+    $('#search_text').val("");
+    window.localStorage.setItem("brand", "");
+    window.localStorage.setItem("grade", "");
+    window.localStorage.setItem("place", "");
+    window.localStorage.setItem("industry", "");
+    window.localStorage.setItem("color", "");
+    
+    check_notification();
+}
+
+function get_search(callback) {
+
+    var name = $('#search_text').val();
+    var brand = window.localStorage.getItem("brand");
+    var grade = window.localStorage.getItem("grade");
+    var place = window.localStorage.getItem("place");
+    var industry = window.localStorage.getItem("industry");
+    var color = window.localStorage.getItem("color");
+
+    $.post(
+        api_url + "indexplates/chimeicorp/get_search.php",
+        {
+            "name": name,
+            "brand": brand,
+            "grade": grade,
+            "place": place,
+            "industry": industry,
+            "color": color
+        },
+        function( data ) {
+            
+            $('#product_sum').text(data.length);
+
+            var list_str = "";
+
+            for(var key in data){
+
+                var item = data[key];
+
+                var index = item["index"];
+                var name = item["name"];            // PA-707
+                var place = item["place"];          // 仁德
+                var industry = item["industry"];    // 待建立
+                var brand = item["brand"];          // POLYLAC®ABS
+                var grade = item["grade"];          // 一般級General
+                var color = item["color"];          // 白.黑色
+                var image = "images/abs.png";
+                var pdf = api_url + "indexplates/chimeicorp/pdf/" + name + ".pdf";
+
+                list_str += '<ons-list-item class="list-item-container" style="text-align:left; padding-top:10%;">';
+                list_str +=     '<ons-row>';
+                list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
+                list_str +=             grade;
+                list_str +=         '</ons-col>';
+                list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
+                list_str +=             name;
+                list_str +=         '</ons-col>';
+                list_str +=         '<ons-col width="20" style="margin:auto;">';
+                list_str +=             '<ons-toolbar-button onclick="pdf_btn_click(\''+pdf+'\')">';
+                list_str +=                 '<img src="images/btm_detail.png" width="25"/>';
+                list_str +=             '</ons-toolbar-button>';
+                list_str +=         '</ons-col>';
+                list_str +=     '</ons-row>';
+                list_str += '</ons-list-item>';
+             
+
+/*
+                list_str += '<ons-list-item modifier="chevron" class="list-item-container" style="text-align: left;" onclick="item_btn_click(\''+index+'\',\''+name+'\',\''+place+'\',\''+industry+'\',\''+brand+'\',\''+grade+'\',\''+color+'\',\''+image+'\',\''+pdf+'\')">';
+                list_str +=     '<ons-row>';
+                list_str +=         '<ons-col width="95px">';
+                list_str +=             '<img src="'+image+'" class="thumbnail">';
+                list_str +=         '</ons-col>';
+                list_str +=         '<ons-col>';
+                list_str +=             '<div class="name">';
+                list_str +=                 name;
+                list_str +=             '</div>';
+                //list_str +=             '<div class="location">';
+                //list_str +=                 '<i class="fa fa-map-marker"></i>' + place;
+                //list_str +=             '</div>';
+                list_str +=             '<div class="desc">';
+                list_str +=                 brand + "<br />" + grade + "<br />";
+                list_str +=             '</div>';
+                list_str +=         '</ons-col>';
+                list_str +=         '<ons-col width="40px"></ons-col>';
+                list_str +=     '</ons-row>';
+                list_str += '</ons-list-item>';
+*/
+            }
+
+            $("#result_list").empty().append(list_str);
+            
+             
+
+            callback();
+        }, 
+        "json"
+    );
+}
+
+
+</script>

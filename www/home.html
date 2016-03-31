@@ -1,0 +1,132 @@
+<style>
+.home_button {
+    width:33.333%; 
+    height:100%;
+    border: none;
+    outline:none;
+    margin-left: 0px;
+    margin-right: 0px; float: left;
+}
+
+.home_button1 {
+    background:url(images/button_none.png) 5% 0px no-repeat;
+    background-size: 330% 100%
+}
+.home_button2 {
+    background:url(images/button_none.png) 50% 0px no-repeat;
+    background-size: 330% 100%
+}
+.home_button3 {
+    background:url(images/button_none.png) 95% 0px no-repeat;
+    background-size: 330% 100%
+}
+
+</style>
+
+<ons-navigator title="Navigator" var="homeNavigator">
+
+<ons-page>
+
+    <ons-toolbar style="background:#6dccf3; height:15%;">
+        <div class="right" style="padding:10% 5% 0% 5%;">
+            <ons-toolbar-button onclick="menu.toggleMenu()">
+                <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="left" >
+            <div style="padding:37% 0% 0% 18%;">
+                <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})">
+                    <img src="images/img_logo@460x160.png" style="height:6vh;"/>
+                </ons-toolbar-button>
+            </div>
+        </div>
+    </ons-toolbar>
+
+    <!-- 主視覺圖 -->
+    <img src="images/home_bg.png" width="100%"/>
+    
+    <!-- bonding your moments -->
+    <div style="height:3.3%; position:fixed; bottom:30%; right:5%; color:#000;">
+        <span id="home_main_text">bonding your moments</span>
+    </div>
+    
+    <!-- 藍色腰帶 -->
+    <div style="background:#6dccf3; height:3.3%; position:fixed; bottom:24%;">
+        <img src="images/img_bar.png" width="100%"/>
+    </div>
+    
+    <!-- 下方按鈕區 -->
+    <div style="background:#fff; width:100%; height:24%; position:fixed; bottom:0px;">
+        <ons-button class="home_button home_button1" modifier="chevron" onclick="homeNavigator.pushPage('page1.html')" style="margin:auto;">
+            <span class="index_menu_itme_2" style="color:#455a64; font-size:5vw; position:absolute; bottom:5%; width:87%; text-align:center;">關於奇美</span>
+        </ons-button>
+        <ons-button class="home_button home_button2" modifier="chevron" onclick="homeNavigator.pushPage('page2-1.html')" style="margin:auto;">
+            <span class="index_menu_itme_3" style="color:#455a64; font-size:5vw; position:absolute; bottom:5%; width:87%; text-align:center;">產品搜尋</span>
+        </ons-button>
+        <ons-button class="home_button home_button3" modifier="chevron" onclick="homeNavigator.pushPage('page3.html')" style="margin:auto;">
+            <span class="index_menu_itme_4" style="color:#455a64; font-size:5vw; position:absolute; bottom:5%; width:87%;  text-align:center;">聯絡我們</span>
+        </ons-button>
+    </div>
+</ons-page>
+</ons-navigator>
+
+<script>
+
+document.addEventListener("init", function(event) {
+
+    // home.html
+    $("#home_main_text").text(translator.getStr("home_main_text"));
+    $(".index_menu_itme_2").text(translator.getStr("index_menu_itme_2"));
+    $(".index_menu_itme_3").text(translator.getStr("index_menu_itme_3"));
+    $(".index_menu_itme_4").text(translator.getStr("index_menu_itme_4"));
+
+    // page1.html
+    $(".index_menu_itme_2").text(translator.getStr("index_menu_itme_2"));
+    $(".page1_item_1").text(translator.getStr("page1_item_1"));
+    $(".page1_item_2").text(translator.getStr("page1_item_2"));
+    $(".page1_item_3").text(translator.getStr("page1_item_3"));
+    
+    // page3.html
+    $(".page3_item_1").text(translator.getStr("page3_item_1"));
+    $(".page3_item_2").text(translator.getStr("page3_item_2"));
+    $(".page3_item_3").text(translator.getStr("page3_item_3"));
+    $(".page3_item_4").text(translator.getStr("page3_item_4"));
+    $(".page3_item_5").text(translator.getStr("page3_item_5"));
+    $(".page3_item_6").text(translator.getStr("page3_item_6"));
+    $(".page3_item_7").text(translator.getStr("page3_item_7"));
+    $(".page3_item_8").text(translator.getStr("page3_item_8"));
+    $(".page3_item_9").text(translator.getStr("page3_item_9"));
+    $(".page3_item_10").text(translator.getStr("page3_item_10"));
+    $(".page3_item_11").text(translator.getStr("page3_item_11"));
+    $(".page3_item_12").text(translator.getStr("page3_item_12"));
+    $(".page3_item_13").text(translator.getStr("page3_item_13"));
+    $(".page3_item_14").text(translator.getStr("page3_item_14"));
+    $(".page3_item_15").text(translator.getStr("page3_item_15"));
+    $(".page3_item_16").text(translator.getStr("page3_item_16"));
+    $(".page3_item_17").text(translator.getStr("page3_item_17"));
+    $(".page3_item_18").text(translator.getStr("page3_item_18"));
+    $(".page3_item_19").text(translator.getStr("page3_item_19"));
+    $(".page3_item_20").text(translator.getStr("page3_item_20"));
+    $(".page3_item_21").text(translator.getStr("page3_item_21"));
+    
+    
+    // page2-1
+    $(".page2_item_1").text(translator.getStr("page2_item_1"));
+    $(".page2_item_2").text(translator.getStr("page2_item_2"));
+    $(".page2_item_3").text(translator.getStr("page2_item_3"));
+    $(".page2_item_4").text(translator.getStr("page2_item_4"));
+});
+
+function company_btn_click() {
+    var ref = window.open(api_url+"indexplates/chimeicorp/introduction_pdf/company_en.pdf", '_system', 'location=yes');
+}
+
+function dm_btn_click() {
+    var ref = window.open(api_url+"indexplates/chimeicorp/introduction_pdf/9_dm_en.pdf", '_system', 'location=yes');
+}
+
+function profile_btn_click() {
+    var ref = window.open(api_url+"indexplates/chimeicorp/introduction_pdf/profile_en.pdf", '_system', 'location=yes');
+}
+
+</script>
