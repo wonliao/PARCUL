@@ -7,6 +7,7 @@ var en = {
     index_menu_itme_2:"About    ",
     index_menu_itme_3:"Products",
     index_menu_itme_4:"Contact",
+    index_version:"Version",
 
     // page1.html
     page1_item_1:"Profile",
@@ -69,6 +70,7 @@ var zh = {
     index_menu_itme_2:"關於奇美",
     index_menu_itme_3:"產品搜尋",
     index_menu_itme_4:"聯絡我們",
+    index_version:"版本",
     
     // page1.html
     page1_item_1:"公司簡介",

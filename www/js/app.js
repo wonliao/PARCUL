@@ -1,5 +1,5 @@
 
-var isRelease = false;
+var isRelease = true;
 
 var api_url = "http://livebricks.incdoor.com/";
 document.addEventListener("init", function(event) {

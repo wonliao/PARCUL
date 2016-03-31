@@ -111,7 +111,11 @@ function list_btn_click(type) {
                     return this.name;
                 }).get();
 
-                $("#"+type+"_notification").text(checkedVals.length);
+                if(checkedVals.length > 0) {
+                    $("#"+type+"_notification").text(checkedVals.length);
+                } else {
+                    $("#"+type+"_notification").text("");
+                }
 
                 var value = checkedVals.join(",");
                 window.localStorage.setItem(type, value);
@@ -199,13 +203,13 @@ function check_notification() {
     var industry = window.localStorage.getItem("industry");
     var color = window.localStorage.getItem("color");
 
-    (brand == "")? brand_notification = "": brand_notification = brand.split(",").length;
-    (grade == "")? grade_notification = "": grade_notification = grade.split(",").length;
-    (place == "")? place_notification = "": place_notification = place.split(",").length;
-    (industry == "")? industry_notification = "": industry_notification = industry.split(",").length;
-    (color == "")? color_notification = "": color_notification = color.split(",").length;
+    (brand == "" || brand == null)? brand_notification = "": brand_notification = brand.split(",").length;
+    (grade == "" || grade == null)? grade_notification = "": grade_notification = grade.split(",").length;
+    (place == "" || place == null)? place_notification = "": place_notification = place.split(",").length;
+    (industry == "" || industry == null)? industry_notification = "": industry_notification = industry.split(",").length;
+    (color == "" || color == null)? color_notification = "": color_notification = color.split(",").length;
 
-    $("#brand_notification").text(brand_notification);
+    $("#brand_notification").text("");
     $("#grade_notification").text(grade_notification);
     $("#place_notification").text(place_notification);
     $("#industry_notification").text(industry_notification);
