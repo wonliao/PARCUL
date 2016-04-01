@@ -30,6 +30,7 @@ var en = {
     page2_2_item_7:"Clear search",
     page2_2_item_8:"Search",
     search_text:"Product Name",
+    search_result:"No results found.",
     
     // page2-3.html
     page2_3_item_1:"",
@@ -58,7 +59,6 @@ var en = {
     page3_item_20:"Making Life More Convenient",
     page3_item_21:"Looking ahead to the future, we have established new materials research departments dedicated to investigation and development of new materials. We are realizing our vision of sustainable operation, enhancing added value for customers, making life more convenient, improving people's quality of life, and contributing to a brighter future.",
 
-    
     // home.html
     home_main_text:"bonding your moments"
 };
@@ -93,6 +93,7 @@ var zh = {
     page2_2_item_7:"清除搜尋條件",
     page2_2_item_8:"搜尋",
     search_text:"請輸入型號",
+    search_result:"沒有結果",
     
     // page2-3.html
     page2_3_item_1:"搜尋結果，共 ",
@@ -120,8 +121,7 @@ var zh = {
     page3_item_19:"透過先進的研發架構、高效率產能,以及全面品質管控流程,我們積極開發 更符合世界潮流與潔淨環境的先進材料,致力貼心滿足客戶各種不同需求, 並與全球客戶攜手守護地球與人類健康,並獲取絕佳競爭優勢。",
     page3_item_20:"創新應用 前瞻未來",
     page3_item_21:"奇美是全球第一家符合食品接觸塑料最嚴苛要求的供應商。我們的創新腳步 從不停歇,半世紀以來努力不懈的研發新原料,近年更投入高值化材料應用, 以期為人們創造更高品質、更美好愉悅的便利生活。",
-    
-    
+
     // home.html
     home_main_text:"精彩时刻 源自奇美"
 };

@@ -249,67 +249,80 @@ function get_search(callback) {
         },
         function( data ) {
             
-            $('#product_sum').text(data.length);
-
             var list_str = "";
-
-            for(var key in data){
-
-                var item = data[key];
-
-                var index = item["index"];
-                var name = item["name"];            // PA-707
-                var place = item["place"];          // 仁德
-                var industry = item["industry"];    // 待建立
-                var brand = item["brand"];          // POLYLAC®ABS
-                var grade = item["grade"];          // 一般級General
-                var color = item["color"];          // 白.黑色
-                var image = "images/abs.png";
-                var pdf = api_url + "indexplates/chimeicorp/pdf/" + name + ".pdf";
-
+            
+            // 沒有結果
+            if(data == null) {
+                
                 list_str += '<ons-list-item class="list-item-container" style="text-align:left; padding-top:10%;">';
                 list_str +=     '<ons-row>';
-                list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
-                list_str +=             grade;
-                list_str +=         '</ons-col>';
-                list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
-                list_str +=             name;
-                list_str +=         '</ons-col>';
-                list_str +=         '<ons-col width="20" style="margin:auto;">';
-                list_str +=             '<ons-toolbar-button onclick="pdf_btn_click(\''+pdf+'\')">';
-                list_str +=                 '<img src="images/btm_detail.png" width="25"/>';
-                list_str +=             '</ons-toolbar-button>';
+                list_str +=         '<ons-col width="100" style="margin:auto; text-align:center;">';
+                list_str +=             "<span class='search_result'>沒有結果</span>";
                 list_str +=         '</ons-col>';
                 list_str +=     '</ons-row>';
                 list_str += '</ons-list-item>';
-             
+                
+            } else {
+            
+                $('#product_sum').text(data.length);
+
+                for(var key in data) {
+
+                    var item = data[key];
+
+                    var index = item["index"];
+                    var name = item["name"];            // PA-707
+                    var place = item["place"];          // 仁德
+                    var industry = item["industry"];    // 待建立
+                    var brand = item["brand"];          // POLYLAC®ABS
+                    var grade = item["grade"];          // 一般級General
+                    var color = item["color"];          // 白.黑色
+                    var image = "images/abs.png";
+                    var pdf = api_url + "indexplates/chimeicorp/pdf/" + name + ".pdf";
+
+                    list_str += '<ons-list-item class="list-item-container" style="text-align:left; padding-top:10%;">';
+                    list_str +=     '<ons-row>';
+                    list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
+                    list_str +=             grade;
+                    list_str +=         '</ons-col>';
+                    list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
+                    list_str +=             name;
+                    list_str +=         '</ons-col>';
+                    list_str +=         '<ons-col width="20" style="margin:auto;">';
+                    list_str +=             '<ons-toolbar-button onclick="pdf_btn_click(\''+pdf+'\')">';
+                    list_str +=                 '<img src="images/btm_detail.png" width="25"/>';
+                    list_str +=             '</ons-toolbar-button>';
+                    list_str +=         '</ons-col>';
+                    list_str +=     '</ons-row>';
+                    list_str += '</ons-list-item>';
 
 /*
-                list_str += '<ons-list-item modifier="chevron" class="list-item-container" style="text-align: left;" onclick="item_btn_click(\''+index+'\',\''+name+'\',\''+place+'\',\''+industry+'\',\''+brand+'\',\''+grade+'\',\''+color+'\',\''+image+'\',\''+pdf+'\')">';
-                list_str +=     '<ons-row>';
-                list_str +=         '<ons-col width="95px">';
-                list_str +=             '<img src="'+image+'" class="thumbnail">';
-                list_str +=         '</ons-col>';
-                list_str +=         '<ons-col>';
-                list_str +=             '<div class="name">';
-                list_str +=                 name;
-                list_str +=             '</div>';
-                //list_str +=             '<div class="location">';
-                //list_str +=                 '<i class="fa fa-map-marker"></i>' + place;
-                //list_str +=             '</div>';
-                list_str +=             '<div class="desc">';
-                list_str +=                 brand + "<br />" + grade + "<br />";
-                list_str +=             '</div>';
-                list_str +=         '</ons-col>';
-                list_str +=         '<ons-col width="40px"></ons-col>';
-                list_str +=     '</ons-row>';
-                list_str += '</ons-list-item>';
+                    list_str += '<ons-list-item modifier="chevron" class="list-item-container" style="text-align: left;" onclick="item_btn_click(\''+index+'\',\''+name+'\',\''+place+'\',\''+industry+'\',\''+brand+'\',\''+grade+'\',\''+color+'\',\''+image+'\',\''+pdf+'\')">';
+                    list_str +=     '<ons-row>';
+                    list_str +=         '<ons-col width="95px">';
+                    list_str +=             '<img src="'+image+'" class="thumbnail">';
+                    list_str +=         '</ons-col>';
+                    list_str +=         '<ons-col>';
+                    list_str +=             '<div class="name">';
+                    list_str +=                 name;
+                    list_str +=             '</div>';
+                    //list_str +=             '<div class="location">';
+                    //list_str +=                 '<i class="fa fa-map-marker"></i>' + place;
+                    //list_str +=             '</div>';
+                    list_str +=             '<div class="desc">';
+                    list_str +=                 brand + "<br />" + grade + "<br />";
+                    list_str +=             '</div>';
+                    list_str +=         '</ons-col>';
+                    list_str +=         '<ons-col width="40px"></ons-col>';
+                    list_str +=     '</ons-row>';
+                    list_str += '</ons-list-item>';
 */
+                }
             }
 
             $("#result_list").empty().append(list_str);
             
-             
+            $(".search_result").text(translator.getStr("search_result"));
 
             callback();
         }, 
