@@ -8,30 +8,56 @@ ons-list-item {
 
     <ons-page>
 
-        <ons-toolbar style="background:#6dccf3; height:15%;">
-            <div class="right" style="padding:10% 5% 0% 5%;">
+    <ons-toolbar style="background:#6dccf3; height:15%;">
+        <div class="left" style="height:100%; width:100%;">
+            <div style="margin:12% 0% 0% 10%; height:50%;" ons-if-platform="ios">
+                <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})" style="">
+                    <img src="images/img_logo@460x160.png" style="height:110%;"/>
+                </ons-toolbar-button>
+            </div>
+            <div style="margin:20% 0% 0% 10%; height:50%;" ons-if-platform="android">
+                <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})" style="">
+                    <img src="images/img_logo@460x160.png" style="height:100%;"/>
+                </ons-toolbar-button>
+            </div>
+            <div style="margin:20% 0% 0% 10%; height:50%;" ons-if-platform="chrome">
+                <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})" style="">
+                    <img src="images/img_logo@460x160.png" style="height:100%;"/>
+                </ons-toolbar-button>
+            </div>
+        </div>
+        <div class="right" style="height:100%;width:100%;top: 0px;position: absolute;right: 0;">
+            <div style="padding:10% 5% 0% 5%; height:50%;"  ons-if-platform="ios">
                 <ons-toolbar-button onclick="menu.toggleMenu()">
                     <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="left" >
-                <div style="padding:37% 0% 0% 18%;">
-                    <ons-toolbar-button onclick="menu.setMainPage('home.html', {closeMenu: true})">
-                        <img src="images/img_logo@460x160.png" style="height:6vh;"/>
-                    </ons-toolbar-button>
-                </div>
+            <div style="padding:20% 5% 0% 5%; height:50%;"  ons-if-platform="android">
+                <ons-toolbar-button onclick="menu.toggleMenu()">
+                    <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                </ons-toolbar-button>
             </div>
-        </ons-toolbar>
+            <div style="padding:20% 5% 0% 5%; height:50%;"  ons-if-platform="chrome">
+                <ons-toolbar-button onclick="menu.toggleMenu()">
+                    <ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+        </div>
+    </ons-toolbar>
+
 
         <div style="height:10%;"></div>
-            
+
         <ons-list style="background:rgba(0,0,0,0)">
             <ons-list-item style="background:rgba(0,0,0,0)">
                 <div class="left" style="float:left;">
-                    <ons-back-button onclick="menu.setMainPage('page2-1.html', {closeMenu: true})">Back</ons-back-button>
+                    <ons-button class="button--quiet" onclick="menu.setMainPage('page2-1.html', {closeMenu: true})">
+                        <i class="ion-ios-arrow-back ons-back-button__icon" style="vertical-align: top; background-color: transparent; height: 44px; line-height: 44px; font-size: 36px; margin-left: 8px; margin-right: 2px; width: 16px; display: inline-block; padding-top: 1px;"></i>
+                        <span style="vertical-align: top; display: inline-block; line-height: 44px; height: 44px;" class="back-button__label"><span class="ng-scope">Back</span></span>
+                    </ons-button>
                 </div>
                 <div class="center" style="text-align:center">
-                    <span class="page2_item_1" style="margin-left:-30%;">塑膠系列</span>
+                    <span class="index_menu_itme_3" style="margin-left:-30%;">塑膠系列</span>
                 </div>
             </ons-list-item>
         </ons-list>
@@ -84,7 +110,26 @@ ons-list-item {
 
 <script>
 
-  
+ons.ready(function() {
+    setTimeout(function() {
+
+        $(".index_menu_itme_3").text(translator.getStr("index_menu_itme_3")); 
+        $(".page2_2_item_1").text(translator.getStr("page2_2_item_1"));
+        $(".page2_2_item_2").text(translator.getStr("page2_2_item_2"));
+        $(".page2_2_item_3").text(translator.getStr("page2_2_item_3"));
+        $(".page2_2_item_4").text(translator.getStr("page2_2_item_4"));
+        $(".page2_2_item_5").text(translator.getStr("page2_2_item_5"));
+        $(".page2_2_item_6").text(translator.getStr("page2_2_item_6"));
+        $(".page2_2_item_7").text(translator.getStr("page2_2_item_7"));
+        $(".page2_2_item_8").text(translator.getStr("page2_2_item_8"));
+        $("#search_text").attr("placeholder", translator.getStr("search_text"));
+        
+        $(".page2_3_item_1").text(translator.getStr("page2_3_item_1"));
+        $(".page2_3_item_2").text(translator.getStr("page2_3_item_2"));
+     
+        check_notification();
+    }, 10);
+});
 
 function list_btn_click(type) {
 
@@ -176,25 +221,6 @@ function pdf_btn_click(pdf) {
     var ref = window.open(pdf, '_system', 'location=yes');
 }
 
-
-document.addEventListener("init", function(event) {
-
-    $(".page2_2_item_1").text(translator.getStr("page2_2_item_1"));
-    $(".page2_2_item_2").text(translator.getStr("page2_2_item_2"));
-    $(".page2_2_item_3").text(translator.getStr("page2_2_item_3"));
-    $(".page2_2_item_4").text(translator.getStr("page2_2_item_4"));
-    $(".page2_2_item_5").text(translator.getStr("page2_2_item_5"));
-    $(".page2_2_item_6").text(translator.getStr("page2_2_item_6"));
-    $(".page2_2_item_7").text(translator.getStr("page2_2_item_7"));
-    $(".page2_2_item_8").text(translator.getStr("page2_2_item_8"));
-    $("#search_text").attr("placeholder", translator.getStr("search_text"));
-    
-    $(".page2_3_item_1").text(translator.getStr("page2_3_item_1"));
-    $(".page2_3_item_2").text(translator.getStr("page2_3_item_2"));
- 
-    check_notification();
-});
-
 function check_notification() {
 
     var brand = window.localStorage.getItem("brand");
@@ -279,7 +305,7 @@ function get_search(callback) {
                     var color = item["color"];          // 白.黑色
                     var image = "images/abs.png";
                     var pdf = api_url + "indexplates/chimeicorp/pdf/" + name + ".pdf";
-
+/*
                     list_str += '<ons-list-item class="list-item-container" style="text-align:left; padding-top:10%;">';
                     list_str +=     '<ons-row>';
                     list_str +=         '<ons-col width="40" style="margin:auto; padding:0 5% 0 5%;">';
@@ -295,28 +321,23 @@ function get_search(callback) {
                     list_str +=         '</ons-col>';
                     list_str +=     '</ons-row>';
                     list_str += '</ons-list-item>';
-
-/*
-                    list_str += '<ons-list-item modifier="chevron" class="list-item-container" style="text-align: left;" onclick="item_btn_click(\''+index+'\',\''+name+'\',\''+place+'\',\''+industry+'\',\''+brand+'\',\''+grade+'\',\''+color+'\',\''+image+'\',\''+pdf+'\')">';
-                    list_str +=     '<ons-row>';
-                    list_str +=         '<ons-col width="95px">';
-                    list_str +=             '<img src="'+image+'" class="thumbnail">';
-                    list_str +=         '</ons-col>';
-                    list_str +=         '<ons-col>';
-                    list_str +=             '<div class="name">';
-                    list_str +=                 name;
-                    list_str +=             '</div>';
-                    //list_str +=             '<div class="location">';
-                    //list_str +=                 '<i class="fa fa-map-marker"></i>' + place;
-                    //list_str +=             '</div>';
-                    list_str +=             '<div class="desc">';
-                    list_str +=                 brand + "<br />" + grade + "<br />";
-                    list_str +=             '</div>';
-                    list_str +=         '</ons-col>';
-                    list_str +=         '<ons-col width="40px"></ons-col>';
-                    list_str +=     '</ons-row>';
-                    list_str += '</ons-list-item>';
 */
+        list_str += '<ons-list-item class="list-item-container" style="text-align:left; padding-top:5%;">';
+        list_str +=     '<ul style="list-style:none;">';
+        list_str +=         '<li style="padding:0 5% 0 0; width:40%; float:left;">';
+        list_str +=             grade;
+        list_str +=         '</li>';
+        list_str +=         '<li style="padding:0 5% 0 5%; width:30%; float:left;">';
+        list_str +=             '<span>'+name+'</span>';
+        list_str +=         '</li>';
+        list_str +=         '<li style="padding:0 0 0 0%; width:10%; float:left;">';
+        list_str +=             '<ons-toolbar-button onclick="pdf_btn_click(\''+pdf+'\')">';
+        list_str +=                 '<img src="images/btm_detail.png" width="25"/>';
+        list_str +=             '</ons-toolbar-button>';
+        list_str +=         '</li>';
+        list_str +=     '</ul>';
+        list_str += '</ons-list-item>';
+        
                 }
             }
 

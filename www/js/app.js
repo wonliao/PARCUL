@@ -13,4 +13,3 @@ document.addEventListener("init", function(event) {
 });
 
 ons.bootstrap();
-

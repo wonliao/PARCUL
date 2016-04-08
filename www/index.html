@@ -6,10 +6,25 @@
     <meta http-equiv="Content-Security-Policy" content="style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <link rel="stylesheet" href="components/loader.css">
-    <link rel="stylesheet" href="css/style.css">
     
     <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/OnsenUI/OnsenUI/2.0.0-alpha.15/build/css/onsenui.css'>
     <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/OnsenUI/OnsenUI/2.0.0-alpha.15/build/css/onsen-css-components.css'>
+
+
+    <link rel="stylesheet prefetch" href="css/style.css">
+    <script src="components/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+    
+    
+    <script src='js/jquery.blockUI.js'></script>
+    
+    <script src='js/app.js'></script>
+    <script src='js/lang.js'></script>
 </head>
 <body>
 
@@ -32,34 +47,22 @@
         </ons-list-item>
       </ons-list>
       <div style="position:absolute; bottom:2%; right:5%; color:#aaa;">
-        <span class="index_version">版本</span>：1.0.2
+        <span class="index_version">版本</span>：1.0.3
       </div>
     </ons-template>
     <!-- 側邊欄 end -->
 
-<script src='js/onsenui.js'></script>
-<script src="components/loader.js"></script>
-<script src='js/angular.min.js'></script>
-<script src='js/angular-onsenui.js'></script>
-<script src='js/jquery.blockUI.js'></script>
-<script src='js/app.js'></script>
-<script src='js/lang.js'></script>
 
 <script>
-document.addEventListener("init", function(event) {
+ons.ready(function() {
+    setTimeout(function() {
 
-    $(".index_menu_itme_1").text(translator.getStr("index_menu_itme_1"));
-    $(".index_menu_itme_2").text(translator.getStr("index_menu_itme_2"));
-    $(".index_menu_itme_3").text(translator.getStr("index_menu_itme_3"));
-    $(".index_menu_itme_4").text(translator.getStr("index_menu_itme_4"));
+        $(".index_menu_itme_1").text(translator.getStr("index_menu_itme_1"));
+        $(".index_menu_itme_2").text(translator.getStr("index_menu_itme_2"));
+        $(".index_menu_itme_3").text(translator.getStr("index_menu_itme_3"));
+        $(".index_menu_itme_4").text(translator.getStr("index_menu_itme_4"));
+    }, 10);
 });
-
-/*
-function menu_click(setPage) {
-    menu.toggleMenu();
-    homeNavigator.pushPage(setPage);
-}
-*/
 </script>
 
 </body>
