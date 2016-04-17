@@ -1,0 +1,77 @@
+<!--
+<ons-page modifier="search-1">
+-->
+	<!-- toolbar -->
+	<ons-toolbar class="my-toolbar" style="background:#84B818;">
+    	<div class="left" style="position:absolute; width:25%; left:0%;">
+			<ons-back-button></ons-back-button>
+     	</div>
+		<div class="center" style="position:absolute; width:50%; left:25%;">
+			<span style="color:#FFF;">停車接龍</span>
+     	</div>
+		<div class="right" style="position:absolute; width:25%; right:2%;">
+			<ons-toolbar-button onclick="next_btn_click()">
+				<span style="color:#FFF;">下一步</span>
+			</ons-toolbar-button>
+     	</div>
+    </ons-toolbar>
+	
+	<div style="position:absolute; top:16.5%; left:31.5%; font-size:5.35vw; color:#1E4B20;">請選擇停車時間</div>
+
+	<img src="images/icon_park_time.png" style="position:absolute; top:30.2%; width:8%; left:5.4%" />
+	<div class="text-input text-input--underbar" style="position:absolute; top:27%; left:26%; width:100%; font-size:6vw; padding:6% 0 0 25%; height:10%;">小時</div>
+	<div id="time_result" onclick="openTimeSlot()" name="user_name" type="text" class="text-input text-input--underbar" style="position:absolute; top:27%; left:0%; width:100%; font-size:6vw; padding:6% 0 0 38%; height:10%;">2:00</div>
+<!--
+</ons-page>
+-->
+
+<style>
+</style>
+
+
+<script>
+function next_btn_click() {
+
+	if(SpinningWheel.isExist())	SpinningWheel.close();
+	myNavigator.pushPage('search-2.html');
+}
+
+
+function cancel() {
+	//document.getElementById('date_result').innerHTML = 'cancelled!';
+}
+
+function timeDone() {
+
+	var results = SpinningWheel.getSelectedValues();
+	$("#time_result").text(results.values.join(':'));
+	
+	var search_hours = Math.floor(results.values[0]);
+	if(Math.floor(results.values[1]) > 0)		search_hours += 1;
+	localStorage.setItem("search_hours", search_hours);
+}
+
+function openTimeSlot() {
+
+	var hours = {};
+	var minutes = {};
+	for( var i = 1; i <= 12; i += 1 ) {
+		hours[i] = i;
+	}
+
+	for( var i = 0; i < 12; i += 1) {
+
+		var minute = i * 5;
+		if(i == 0)		minutes[i] = "00";
+		else if(i == 1)	minutes[i] = "05";
+		else 			minutes[i] = minute;
+	}
+
+	SpinningWheel.addSlot(hours, 'right', 2);
+	SpinningWheel.addSlot(minutes, '', 0);
+	SpinningWheel.setCancelAction(cancel);
+	SpinningWheel.setDoneAction(timeDone);
+	SpinningWheel.open();
+}
+
+</script>

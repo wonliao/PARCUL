@@ -1,0 +1,85 @@
+/*
+.page--singin__background {
+    background: url(../reference/登入頁1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--home__background {
+    background: url(../reference/首頁1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+*/
+.page--singup-1__background {
+    background: url(../reference/註冊頁面1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--singup-2__background {
+    background: url(../reference/註冊頁面2-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--singup-3__background {
+    background: url(../reference/註冊頁面3-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--singup-4__background {
+    background: url(../reference/註冊完成.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--park-1__background {
+    background: url(../reference/接龍畫面1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--park-2__background {
+    background: url(../reference/接龍畫面（地圖）1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--park-4__background {
+    background: url(../reference/接龍完成.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--search-1__background {
+    background: url(../reference/接龍畫面（時間）1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--search-2__background {
+    background: url(../reference/接龍畫面（時間）1-2.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--park-3__background {
+    background: url(../reference/接龍完成.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--monitor__background {
+    background: url(../reference/監控1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+
+.page--froget_passowrd__background {
+    background: url(../reference/忘記密碼1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+

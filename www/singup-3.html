@@ -1,0 +1,63 @@
+<!--
+<ons-page modifier="singup-3">
+-->
+	<!-- toolbar -->
+	<ons-toolbar class="my-toolbar" style="background:#84B818;">
+    	<div class="left" style="position:absolute; width:25%; left:0%;">
+			<ons-back-button></ons-back-button>
+     	</div>
+		<div class="center" style="position:absolute; width:50%; left:25%;">
+			<span style="color:#FFF;">註冊</span>
+     	</div>
+		<div class="right" style="position:absolute; width:25%; right:2%;">
+			<ons-toolbar-button onclick="next_btn_click()">
+				<span style="color:#FFF;">下一步</span>
+			</ons-toolbar-button>
+     	</div>
+    </ons-toolbar>
+
+	<div class="login-form" style="margin:auto;">
+
+		<!-- 進度條 -->
+		<img src="images/step3.png" style="width:57.5%; position:absolute; top:15%; left:21.2%;" />
+		
+		<div style=" position:absolute; top:21.5%; left:39%; font-size:5.35vw; color:#1E4B20;">ETag掃描</div>
+
+		<div style="font-size:4.8vw;">
+			
+			<ons-button class="my-button" style="width:80%; position:absolute; top:29.5%; left:10%; padding:0;" onclick="scan_btn_click()">
+				<img src="images/etag.png" style="width:100%;" />
+			</ons-button>
+			
+			<label for="user_etag" style="position:absolute; top:63%; left:8%; width:84%;">車主證號</label>
+			<input id="user_etag" name="user_etag" type="text" class="text-input text-input--underbar" value="" style="position:absolute; top:66.5%; left:8%; width:84%; color:#9B9B9B; padding-left:0px;" readonly>
+		</div>
+	</div>
+<!--
+</ons-page>
+-->
+<style>
+</style>
+
+<script>
+function scan_btn_click() {
+
+	$("#user_etag").val("3275A46G86");
+}
+
+function next_btn_click() {
+
+	var user_etag = $("#user_etag").val();
+	if(user_etag == "") {
+		ons.notification.alert({
+			title: "",
+			message: "認證失敗",
+			modifier: "tappable",
+		});
+		return;
+	}
+
+	localStorage.getItem("sn_code", sn_code);
+	myNavigator.pushPage('singup-4.html');
+}
+</script>

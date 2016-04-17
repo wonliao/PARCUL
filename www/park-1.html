@@ -1,0 +1,151 @@
+<!--
+<ons-page modifier="park-1">
+-->
+	<!-- toolbar -->
+	<ons-toolbar class="my-toolbar" style="background:#84B818;">
+    	<div class="left" style="position:absolute; width:25%; left:0%;">
+			<ons-back-button></ons-back-button>
+     	</div>
+		<div class="center" style="position:absolute; width:50%; left:25%;">
+			<span style="color:#FFF;">停車接龍</span>
+     	</div>
+		<div class="right" style="position:absolute; width:25%; right:2%;">
+			<ons-toolbar-button onclick="next_btn_click()">
+				<span style="color:#FFF;">下一步</span>
+			</ons-toolbar-button>
+     	</div>
+    </ons-toolbar>
+	
+	<div style="position:absolute; top:16.5%; left:31.5%; font-size:5.35vw; color:#1E4B20;">請選擇停車日期</div>
+	
+	<img src="images/icon_park_date.png" style="position:absolute; top:30%; width:8%; left:5.4%" />
+	<div id="date_result" onclick="openDateSlot()" name="user_name"  class="text-input text-input--underbar" style="position:absolute; top:27%; left:0%; width:100%; font-size:6vw; padding:6% 0 0 25%; height:10%;">4月4 週四 上午 2:10</div>
+
+	<img src="images/icon_park_time.png" style="position:absolute; top:39.4%; width:8%; left:5.4%" />
+	<div class="text-input text-input--underbar" style="position:absolute; top:36%; left:26%; width:100%; font-size:6vw; padding:6% 0 0 25%; height:10%;">小時</div>
+	<div id="time_result" onclick="openTimeSlot()" name="user_name" type="text" class="text-input text-input--underbar" style="position:absolute; top:36%; left:0%; width:100%; font-size:6vw; padding:6% 0 0 38%; height:10%;">2:00</div>
+<!--
+</ons-page>
+-->
+<style>
+</style>
+
+
+<script>
+var days = {};
+var years = {};
+var months = { 0: '1月', 1: '2月', 2: '3月', 3: '4月', 4: '5月', 5: '6月', 6: '7月', 7: '8月', 8: '9月', 9: '10月', 10: '11月', 11: '12月' };
+var weeks = { 0: '週日', 1: '週一', 2: '週二', 3: '週三', 4: '週四', 5: '週五', 6: '週六' };
+var ampms = { 0: '上午', 1: '下午' };
+var hours = {};
+var minutes = {};
+	
+	
+var currentdate = new Date();
+var c_month = currentdate.getMonth();	// 0-11
+var c_date = currentdate.getDate();		// 1-31
+var c_day = currentdate.getDay();			// 0-6
+var c_ampm = currentdate.getHours() >= 12 ? '1' : '0';
+var c_hours = currentdate.getHours();	// 0-23
+c_hours = c_hours % 12;
+c_hours = c_hours ? c_hours : 12; // the hour '0' should be '12'
+var c_minutes = Math.floor(currentdate.getMinutes() / 5);
+
+var str = months[c_month]+c_date+" "+weeks[c_day]+" "+ampms[c_ampm]+" "+c_hours+":"+c_minutes*5;
+$("#date_result").text(str);
+
+
+
+
+function next_btn_click() {
+
+	if(SpinningWheel.isExist())	SpinningWheel.close();
+	myNavigator.pushPage('park-2.html');
+}
+
+function dateDone() {
+
+	var results = SpinningWheel.getSelectedValues();
+	var str = results.values[0]+results.values[1]+" "+results.values[2]+" "+results.values[3]+" "+results.values[4]+":"+results.values[5];
+	$("#date_result").text(str);
+	
+	localStorage.setItem("park_date", str);
+	//alert(localStorage.getItem("park_date"));
+}
+
+function cancel() {
+	//document.getElementById('date_result').innerHTML = 'cancelled!';
+}
+
+function openDateSlot() {
+
+	var now = new Date();
+
+	for( var i = 1; i < 32; i += 1 ) {
+		days[i] = i;
+	}
+
+	for( i = now.getFullYear()-100; i < now.getFullYear()+1; i += 1 ) {
+		years[i] = i;
+	}
+
+	for( var i = 1; i <= 12; i += 1 ) {
+		hours[i] = i;
+	}
+
+	for( var i = 0; i < 12; i += 1) {
+		
+		var minute = i * 5;
+		if(i == 0)		minutes[i] = 00;
+		else if(i == 1)	minutes[i] = 05;
+		else 			minutes[i] = minute;
+	}
+
+	if(SpinningWheel.isExist())	SpinningWheel.destroy();
+	SpinningWheel.addSlot(months, '', c_month);
+	SpinningWheel.addSlot(days, '', c_date);
+	SpinningWheel.addSlot(weeks, '', c_day);
+	SpinningWheel.addSlot(ampms, '', c_ampm);
+	SpinningWheel.addSlot(hours, '', c_hours);
+	SpinningWheel.addSlot(minutes, '', c_minutes);
+	SpinningWheel.setCancelAction(cancel);
+	SpinningWheel.setDoneAction(dateDone);
+	SpinningWheel.open();
+}
+
+
+
+function timeDone() {
+
+	var results = SpinningWheel.getSelectedValues();
+	$("#time_result").text(results.values.join(':'));
+	
+	localStorage.setItem("park_time", results.values.join(':'));
+	//alert(localStorage.getItem("park_time"));
+}
+
+function openTimeSlot() {
+
+	var hours = {};
+	var minutes = {};
+	for( var i = 1; i <= 12; i += 1 ) {
+		hours[i] = i;
+	}
+
+	for( var i = 0; i < 12; i += 1) {
+		
+		var minute = i * 5;
+		if(i == 0)		minutes[i] = "00";
+		else if(i == 1)	minutes[i] = "05";
+		else 			minutes[i] = minute;
+	}
+	
+	if(SpinningWheel.isExist())	SpinningWheel.destroy();
+	SpinningWheel.addSlot(hours, 'right', 2);
+	SpinningWheel.addSlot(minutes, '', 2);
+	SpinningWheel.setCancelAction(cancel);
+	SpinningWheel.setDoneAction(timeDone);
+	SpinningWheel.open();
+}
+
+</script>
