@@ -1,8 +1,8 @@
 
 <ons-navigator title="Navigator" var="myNavigator" >
 
-	<ons-page modifier="home" >
-	
+	<ons-page modifier="home" style="background:#84B818;">
+
 		<!-- toolbar -->
 		<ons-toolbar class="my-toolbar" style="background:#84B818;">
 			<div class="left" style="position:absolute; width:25%; left:0%;">
@@ -19,13 +19,13 @@
 
 		<div class="login-form" style="margin:auto;">
 			<img src="images/icon_login.png" style="width:35%; position:absolute; top:13.4%; left:32.2%;" />
-			<ons-button class="my-button" style="position:absolute; top:34.5%; left:28%; width:53%; height:30%;" onclick="myNavigator.pushPage('park-1.html')">
+			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:34.5%; left:28%; width:53%; height:30%;" onclick="myNavigator.pushPage('park-1.html')">
 				<img src="images/btn_home_park_n.png" style="width:100%; position:absolute; left:0; top:0;" />
 			</ons-button>
-			<ons-button class="my-button" style="position:absolute; top:48%; left:0%; width:38%; height:30%;" onclick="myNavigator.pushPage('search-1.html')">
+			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:48%; left:0%; width:38%; height:30%;" onclick="myNavigator.pushPage('search-1.html')">
 				<img src="images/btn_home_search_n.png" style="width:100%; position:absolute; left:0; top:0;" />
 			</ons-button>
-			<ons-button class="my-button" style="position:absolute; top:63.2%; left:28%; width:54%; height:30%;" onclick="myNavigator.pushPage('monitor.html')">
+			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:63.2%; left:28%; width:54%; height:30%;" onclick="myNavigator.pushPage('monitor.html')">
 				<img src="images/btn_home_monitor_n.png" style="width:100%; position:absolute; left:0; top:0;" />
 			</ons-button>
 		</div>
@@ -35,13 +35,6 @@
 </ons-navigator>
 
 <style>
-/*
-.park_btn {
-	font-size:7vw;
-	color:#1E4B20;
-	background-color:RGBA(0,0,0,0);
-}
-*/
 </style>
 
 <script>

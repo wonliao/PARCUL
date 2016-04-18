@@ -16,21 +16,20 @@
      	</div>
     </ons-toolbar>
 
-	<ons-button id="contine_btn" style="position:absolute; width:100%; height:100%;" onclick="menu.setMainPage('home.html', {closeMenu: true})">
-		<img src="images/icon_welcome.png" style="width:61.5%; position:absolute; top:29.5%; left:19.2%;" />
-		<label style="position:absolute; top:57%; left:40.5%; width:40%; font-size:4.8vw;">接龍完成</label>
-		<label style="position:absolute; top:65%; left:33%; width:70%; height:11%;">輕觸回首頁</ons-button>
+    <ons-button class="my-button" style="position:absolute; width:100%; height:100%;" onclick="menu.setMainPage('home.html', {closeMenu: true})">
+        <img src="images/icon_welcome.png" style="width:61.5%; position:absolute; top:29.5%; left:19.2%;" />
+        <div style="position:absolute; top:57%; width:100%; left:0; text-align:center;">
+    	    <label style="color:#000;">接龍完成</label>
+        </div>
+        <div style="position:absolute; top:65%; width:100%; left:0; text-align:center;">
+		    <label style="font-size:7vw;">輕觸回首頁</ons-button>
+        </label>
 	</ons-button>
 <!--
 </ons-page>
 -->
 
 <style>
-#contine_btn {
-	font-size:7vw;
-	color:#1E4B20;
-	background-color:RGBA(0,0,0,0);
-}
 </style>
 
 <script>

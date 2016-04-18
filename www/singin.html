@@ -4,28 +4,32 @@
 		<!-- LOGO -->
 		<img src="images/icon_login.png" style="width:35%; position:absolute; top:13.5%; left:32.5%;" />
 
-		<div id="error_messag" style="position:absolute; top:31%; left:18%; width:100%; height:50%; display:none;">
-			<img src="images/toast_login.png" style="width:64%; position:absolute; left:0; top:0;" />
-			<span style="position:absolute; left:17.5%; top:2%; color:#FFF; font-size:4.8vw;"> 手機或密碼錯誤</span>
+        <div id="error_messag" style="display:none;">
+		<div style="position:absolute; top:31%; width:100%; height:10%; text-align:center;">
+			<img src="images/toast_login.png" style="width:64%; " />
 		</div>
-			
-		<!-- 手機號碼 -->
+		<div style="position:absolute; top:32%; width:100%; height:10%; text-align:center;">
+    	    <div style="color:#FFF; font-size:4.8vw; width:100%;"> 手機或密碼錯誤</div>
+		</div>
+        </div>
+        
+        <!-- 手機號碼 -->
 		<input type="text" id="phone_name" class="text-input" placeholder="手機號碼" value="" style="width:84%; height:35px; position:absolute; left:8%; top:39%;">
 
 		<!-- 停車密碼 -->
 		<input type="password" id="password" class="text-input" placeholder="停車密碼" value="" style="width:84%; height:35px; position:absolute; left:8%; top:49%; padding:4px 8px 0 8px;">
 
 		<!-- 忘記密碼 -->
-		<ons-button id="forget_btn" class="my-button" style="position:absolute; top:56%; left:73%; width:25%; height:8%;" onclick="myNavigator.pushPage('forget_password.html')">忘記密碼</ons-button>
+		<ons-button id="forget_btn" class="my-button" modifier="large--quiet" style="position:absolute; top:56%; left:73%; width:25%; height:8%;" onclick="myNavigator.pushPage('forget_password.html')">忘記密碼</ons-button>
 
 		<!-- 登入鈕 -->
-	   <ons-button id="mylogin_btn" class="my-button" style="position:absolute; top:71%; left:36.2%; width:28%;" onclick="login_btn_click()">
+	   <ons-button id="mylogin_btn" class="my-button" modifier="large--quiet" style="position:absolute; top:71%; left:36.2%; width:28%;" onclick="login_btn_click()">
 	   		<img src="images/btn_login_n.png" style="width:100%;" />
 	   </ons-button>
 		
 		<!-- 第一次使用？ -->
 		<div style="position:absolute; top:88%; left:0%; width:100%; height:11%; text-align:center;">
-			<ons-button id="first_btn" class="my-button" onclick="myNavigator.pushPage('singup-1.html')">第一次使用？</ons-button>
+			<ons-button id="first_btn" class="my-button" modifier="large--quiet" onclick="myNavigator.pushPage('singup-1.html')">第一次使用？</ons-button>
 		</div>
 
 	</ons-page>
@@ -47,6 +51,7 @@
 #first_btn {
 	color:#FFF;
 }
+
 </style>
 
 <script>

@@ -28,26 +28,54 @@
 </head>
 <body>
 
-    <ons-sliding-menu main-page="singin.html" menu-page="menu.html" side="left" max-slide-distance="250px" var="menu" style="background:#84B818;"></ons-sliding-menu>
+    <ons-sliding-menu main-page="home.html" menu-page="menu.html" side="left" max-slide-distance="250px" var="menu" style="background:#84B818;"></ons-sliding-menu>
 
     <!-- 側邊欄 begin -->
 	<ons-template id="menu.html">
-		<div style="width:100%; heigth:20%; text-align:center; margin:auto; padding:20% 0 10%; 0">
-		<img src="images/icon_welcome.png" style="width:35%;" />
-		</div>
-		<ons-list>
-			<ons-list-item modifier="chevron" onclick="menu.setMainPage('singin.html', {closeMenu: true})">
-				<span class="index_menu_itme_1">登入</span>
-			</ons-list-item>
-			<ons-list-item modifier="chevron" onclick="menu.setMainPage('home.html', {closeMenu: true})">
-				<span class="index_menu_itme_1">首頁</span>
-			</ons-list-item>
-		</ons-list>
-		<div style="position:absolute; bottom:2%; right:5%; color:#aaa;">
-			<span class="index_version">版本</span>：0.0.1
-		</div>
+        <ons-page modifier="menu" style="background:#fff;">
+            <div style="position:releative; background:#84B818; width:100%; height:22%;">
+                <img src="images/icon_menu_username.png" style="position:absolute; top:8%; left:8%; width:12%;"/>
+                <div style="position:absolute; top:13.5%; left:8%; width:40%; font-size:4.8vw; color:#fff;">張嘉洋</div>
+                <div style="position:absolute; top:16.9%; left:8%; width:40%; font-size:4.8vw; color:#fff;">2A-6362</div>
+    		</div>
+           
+    		<ons-list style="position:absolute; top:21.8%; width:100%;">
+    			<ons-list-item modifier="chevron" style="height:60px; min-height:60px" onclick="menuItemClick('order-1.html')">
+    				<img src="images/icon_menu_reservation.png" style="position:absolute; top:22%; left:8%; width:12%;" />
+                    <div class="index_menu_itme_1" style="position:absolute; top:10%; left:28%; font-size:5vw; color:#000;">目前預約</div>
+    			</ons-list-item>
+    			<ons-list-item modifier="chevron" style="height:60px; min-height:60px" onclick="menuItemClick('record-1.html')">
+    				<img src="images/icon_menu_history.png" style="position:absolute; top:22%; left:8%; width:12%;" />
+                    <div class="index_menu_itme_1" style="position:absolute; top:10%; left:28%; font-size:5vw; color:#000;">接龍紀錄</div>
+    			</ons-list-item>
+                <ons-list-item modifier="chevron" style="height:60px; min-height:60px" onclick="menuItemClick('home.html')">
+        		    <img src="images/icon_menu_setting.png" style="position:absolute; top:22%; left:8%; width:12%;" />
+                    <div class="index_menu_itme_1" style="position:absolute; top:10%; left:28%; font-size:5vw; color:#000;">設定</div>
+    			</ons-list-item>
+    		</ons-list>
+    		<div style="position:absolute; bottom:2%; right:5%; color:#aaa;">
+    			<span class="index_version">版本</span>：0.0.1
+    		</div>
+        </ons-page>
 	</ons-template>
     <!-- 側邊欄 end -->
+
+<style>
+/*
+.page--menu__background {
+    background: url(reference/menu.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+*/
+</style>
+
+<script>
+function menuItemClick(open_file) {
+    menu.closeMenu();
+    myNavigator.pushPage(open_file);
+}
+</script>
 
 </body>
 </html>
