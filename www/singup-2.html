@@ -16,31 +16,30 @@
      	</div>
     </ons-toolbar>
 
-	<div class="login-form" style="margin:auto;">
 
-		<!-- 進度條 -->
-		<img src="images/step2.png" style="width:57.5%; position:absolute; top:15%; left:21.2%;" />
+	<!-- 進度條 -->
+	<img src="images/step2.png" style="width:57.5%; position:absolute; top:15%; left:21.2%;" />
 
-		<div style="position:absolute; top:21.5%; left:0%; font-size:5.35vw; color:#1E4B20; width:100%; text-align:center; margin:auto; padding:0;">
-			<div id="singup_2_message_text">請輸入認證碼</div>
-		</div>
+	<div style="position:absolute; top:21.5%; left:0%; font-size:5.35vw; color:#1E4B20; width:100%; text-align:center; margin:auto; padding:0;">
+		<div id="singup_2_message_text">請輸入認證碼</div>
+	</div>
 
-		<div style="font-size:4.8vw;">
 
-			<label for="phone_number_2" style="position:absolute; top:29%; left:8%; width:84%;">手機號碼</label>
-			<input id="phone_number_2" name="phone_number" type="text" class="text-input text-input--underbar" value="" style="position:absolute; top:32.8%; left:8%; width:84%; color:#9B9B9B; padding-left:0px;" readonly>
+	<label for="phone_number_2" style="position:absolute; top:29%; left:8%; width:84%;">手機號碼</label>
+	<input id="phone_number_2" name="phone_number" type="text" class="text-input text-input--underbar" value="" style="position:absolute; top:32.8%; left:8%; width:84%; color:#9B9B9B; padding-left:0px;" readonly>
 
-			<label for="sn_code" style="position:absolute; top:42%; left:8%; width:84%;">驗證碼</label>
-			<input id="sn_code" name="sn_code" type="password" class="text-input text-input--underbar" value="" style="position:absolute; top:46%; left:8%; width:84%; padding-left:0px;">
+	<label for="sn_code" style="position:absolute; top:42%; left:8%; width:84%;">驗證碼</label>
+	<input id="sn_code" name="sn_code" type="password" class="text-input text-input--underbar" value="" style="position:absolute; top:46%; left:8%; width:84%; padding-left:0px;">
 
-			<ons-button class="my-button" style="position:absolute; top:51%; left:59%; width:40%; height:7%;" onclick="resend_btn_click()">重新發送驗證碼</ons-button>
+	<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:51%; left:59%; width:40%; height:7%;" onclick="resend_btn_click()">重新發送驗證碼</ons-button>
 
-			<div id="error_message" style="position:absolute; top:85%; left:18%; width:100%; height:50%; display:none">
-				<img src="images/toast_signup.png" style="width:64%; position:absolute; left:0; top:0;" />
-				<span style="position:absolute; left:17.5%; top:4%; color:#FFF; font-size:4.8vw;">驗證碼已送出</span>
-			</div>
-	
-		</div>
+    <div id="error_message" style="display:none;">
+	    <div style="position:absolute; top:85%; left:0; width:100%; height:50%; text-align:center">
+		    <img src="images/toast_signup.png" style="width:64%;" />
+	    </div>
+        <div style="position:absolute; top:86.5%; left:0; width:100%; height:50%; text-align:center">
+            <span style="color:#fff; font-size:4.8vw;">驗證碼已送出</span>
+    	</div>
 	</div>
 <!--
 </ons-page>
