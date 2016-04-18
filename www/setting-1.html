@@ -1,0 +1,120 @@
+<!--
+<ons-page modifier="setting-1">
+-->
+    <!-- toolbar -->
+    <ons-toolbar class="my-toolbar" style="background:#84B818;">
+    	<div class="left" style="position:absolute; width:25%; left:0%;">
+			<ons-back-button></ons-back-button>
+     	</div>
+		<div class="center" style="position:absolute; width:50%; left:25%;">
+			<span style="color:#FFF;">設定</span>
+     	</div>
+		<div class="right" style="position:absolute; width:25%; right:2%;">
+            <!--
+			<ons-toolbar-button onclick="next_btn_click()">
+				<span style="color:#FFF;">下一步</span>
+			</ons-toolbar-button>
+            -->
+     	</div>
+    </ons-toolbar>
+    
+	<div id="info_div" style="position:absolute; left:0%; top:9.66%; width:100%; height:64%;">    
+    	
+        <div style="position:relative; width:100%; height:14.28%; border-bottom:#9B9B9B 1px solid;"></div>
+        
+        <div class="my-button" style="position:relative; width:100%; height:14.28%; background:#fff; border-bottom:#9B9B9B 1px solid;">
+        	<div style="position:absolute; top:28%; left:5.5%; font-size:4.5vw; color:#9B9B9B;">使用者名稱</div>
+            <div id="setting_user_name_div" style="position:absolute; top:28%; right:5%; text-align:right; font-size:4.5vw; color:#9B9B9B;">張嘉洋</div>
+    	</div>
+        <div class="my-button" style="position:relative; width:100%; height:14.28%; background:#fff; border-bottom:#9B9B9B 1px solid;">
+            <div style="position:absolute; top:28%; left:5.5%; font-size:4.5vw; color:#9B9B9B;">手機號碼</div>
+            <div id="setting_phone_number_div" style="position:absolute; top:28%; right:5%; text-align:right; font-size:4.5vw; color:#9B9B9B;">0912554827</div>
+    	</div>
+        <div class="my-button" style="position:relative; width:100%; height:14.28%; background:#fff; border-bottom:#9B9B9B 1px solid;">
+            <div style="position:absolute; top:28%; left:5.5%; font-size:4.5vw; color:#9B9B9B;">車牌號碼</div>
+            <div id="setting_car_number_div" style="position:absolute; top:28%; right:5%; text-align:right; font-size:4.5vw; color:#9B9B9B;">2A-6362</div>
+    	</div>
+
+        <div style="position:relative; width:100%; height:13%; border-bottom:#9B9B9B 1px solid;"></div>
+
+        <ons-button class="my-button" style="position:relative; width:100%; height:14.28%; background:#fff;" onclick="set_apns_btn_click()">
+            <div style="position:absolute; top:25%; left:5.5%; font-size:4.5vw; color:#000;">通知設定</div>
+            <ons-icon icon="ion-chevron-right" style="position:absolute; top:27%; right:7%; text-align:right; color:#000; font-size:7vw;">
+    	</ons-button>
+        <ons-button class="my-button" style="position:relative; width:100%; height:14.28%; background:#fff; border-top:#9B9B9B 1px solid; border-bottom:#9B9B9B 1px solid; border-radius:0;" onclick="set_password_btn_click()">
+            <div style="position:absolute; top:25%; left:5.5%; font-size:4.5vw; color:#000;">修改密碼</div>
+            <ons-icon icon="ion-chevron-right" style="position:absolute; top:27%; right:7%; text-align:right; color:#000; font-size:7vw;">
+        </ons-button>
+
+    </div>
+    
+    <ons-button class="button button--large" style="position:absolute; bottom:0%; width:88%; margin:6%; background:#E7120A;" onclick="delete_btn_click()">刪除帳號</ons-button>
+<!--
+</ons-page>
+-->
+
+<style>
+/*
+.page--setting-1__background {
+    background: url(reference/setting1-1.png);
+    background-size: cover;
+    opacity: 0.5;
+}
+*/
+.alert-dialog-title {
+    font-size: 14px;
+    font-weight: normal;
+}
+</style>
+
+<script>
+setTimeout(function() {
+    if(ons.platform.isIOS()) {
+		$("#info_div").css("top", "9.6%");
+	} else {
+		$("#info_div").css("top", "6%");
+	}
+    
+    init();
+}, 10);
+
+function init() {
+
+    var user_name = localStorage.getItem("user_name");
+	var phone_number = localStorage.getItem("phone_number");
+	var car_number = localStorage.getItem("car_number");
+    
+    $('#setting_user_name_div').text(user_name);
+    $('#setting_phone_number_div').text(phone_number);
+    $('#setting_car_number_div').text(car_number);
+    
+}
+
+function delete_btn_click() {
+   
+    ons.notification.confirm({
+    	title: "確定刪除帳號？",
+		message: "所有相關資料將被移除",
+		modifier: "tappable",
+		buttonLabels: ["取消", "確認"],
+		callback: function(idx) {
+			switch (idx) {
+				case 0:
+					break;
+				case 1:
+					myNavigator.pushPage('setting-2.html');
+					break;
+			}
+		}
+	});
+}
+
+function set_apns_btn_click() {
+    
+}
+
+function set_password_btn_click() {
+    myNavigator.pushPage('password-1.html');
+}
+
+</script>
