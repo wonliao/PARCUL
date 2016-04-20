@@ -18,7 +18,7 @@
      	</div>
     </ons-toolbar>
 
-    <div id="info_div" class="tab-bar tab-bar--top tab-bar--top-border" style="position:absolute; left:0%; top:6%; width:100%; height:7%;">
+    <div id="record_info_div" class="tab-bar tab-bar--top tab-bar--top-border" style="position:absolute; left:0%; top:6%; width:100%; height:7%;">
 
         <label class="tab-bar__item tab-bar--top-border__item" onclick="good_btn_click()">
             <input type="radio" name="top-tab-bar-b" checked="checked">
@@ -88,23 +88,20 @@
 <script>
 setTimeout(function() {
     if(ons.platform.isIOS()) {
-		$("#info_div").css("top", "9.6%");
-        $("#info2_div").css("top", "9.6%");
-        
+		$("#record_info_div").css("top", "9.6%");
         $("#good_div").css("top", "16.6%");
         $("#bad_div").css("top", "16.6%");
 	} else {
-		$("#info_div").css("top", "6%");
-        $("#info2_div").css("top", "6%");
+		$("#record_info_div").css("top", "6%");
         $("#good_div").css("top", "13%");
         $("#bad_div").css("top", "13%");
 	}
 }, 10);
 
 function record_btn_click(flag, obj) {
-    
+
     var list = $( obj ).find( "div" );
-    
+
     var date = $(list[0]).text();
     var area = $(list[1]).text();
     var address = $(list[2]).text();

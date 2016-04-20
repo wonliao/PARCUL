@@ -10,7 +10,7 @@
 			<span style="color:#FFF;">停車接龍</span>
      	</div>
 		<div class="right" style="position:absolute; width:25%; right:2%;">
-			<ons-toolbar-button onclick="next_btn_click()">
+			<ons-toolbar-button onclick="search_1_next_btn_click()">
 				<span style="color:#FFF;">下一步</span>
 			</ons-toolbar-button>
      	</div>
@@ -19,8 +19,8 @@
 	<div style="position:absolute; top:16.5%; left:31.5%; font-size:5.35vw; color:#1E4B20;">請選擇停車時間</div>
 
 	<img src="images/icon_park_time.png" style="position:absolute; top:30.2%; width:8%; left:5.4%" />
-	<div class="text-input text-input--underbar" style="position:absolute; top:27%; left:26%; width:100%; font-size:6vw; padding:6% 0 0 25%; height:10%;">小時</div>
-	<div id="time_result" onclick="openTimeSlot()" name="user_name" type="text" class="text-input text-input--underbar" style="position:absolute; top:27%; left:0%; width:100%; font-size:6vw; padding:6% 0 0 38%; height:10%;">2:00</div>
+	<div class="text-input text-input--underbar" style="position:absolute; top:27%; left:26%; width:70%; font-size:6vw; padding:6% 0 0 25%; height:10%;">小時</div>
+	<div id="time_result" onclick="openTimeSlot()"  type="text" class="text-input text-input--underbar" style="position:absolute; top:27%; left:0%; width:100%; font-size:6vw; padding:6% 0 0 38%; height:10%;">2:00</div>
 <!--
 </ons-page>
 -->
@@ -30,10 +30,11 @@
 
 
 <script>
-function next_btn_click() {
+function search_1_next_btn_click() {
 
-	if(SpinningWheel.isExist())	SpinningWheel.close();
-	myNavigator.pushPage('search-2.html');
+	if(SpinningWheel.isExist()) SpinningWheel.close();
+
+    myNavigator.pushPage('search-2.html');
 }
 
 

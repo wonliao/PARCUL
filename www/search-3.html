@@ -1,0 +1,200 @@
+<!--
+<ons-page modifier="search-3">
+-->
+    <!-- toolbar -->
+	<ons-toolbar class="my-toolbar" style="background:#84B818;">
+    	<div class="left" style="position:absolute; width:25%; left:0%;">
+			<ons-back-button></ons-back-button>
+     	</div>
+		<div class="center" style="position:absolute; width:50%; left:25%;">
+			<span style="color:#FFF;">停車接龍</span>
+     	</div>
+		<div class="right" style="position:absolute; width:25%; right:2%;">
+            <!--
+			<ons-toolbar-button onclick="search_2_next_btn_click()">
+				<span style="color:#FFF;">下一步</span>
+			</ons-toolbar-button>
+            -->
+     	</div>
+    </ons-toolbar>
+
+	<!-- google map -->
+	<div id="googleMap2" style="width:100%;height:100%;"></div>
+
+	<div id="info2_div" style="position:absolute; left:0%; top:6%; width:100%; height:39%; background:#FFF;">
+		<div style="height:37%; border-bottom:#9B9B9B 1px solid;">
+			<img src="images/icon_information.png" style="position:absolute; top:5%; left:4%; width:18%;"/>
+			<div style="position:absolute; top:9%; left:26%; width:42%; color:#9B9B9B;">台北市 南港區</div>
+			<div id="info_road_div" style="position:absolute; top:18%; left:26%; width:42%; font-size:6.2vw;">信義路五段</div>
+			<div id="info_area_div" style="position:absolute; top:15%; left:70%; width:30%; font-size:10vw; color:#E17E0B;">A028</div>
+		</div>
+		<div style="height:21%; border-bottom:#9B9B9B 1px solid;">
+			<div style="height:100%; width:50%; border-right:#9B9B9B 1px solid;">
+				<div id="info_hours_div" style="position:absolute; top:43%; left:20%; width:42%; font-size:6.2vw;">2</div>
+				<div style="position:absolute; top:44%; left:33%; width:42%; color:#9B9B9B;">小時</div>
+			</div>
+			<div id="info_price_div" style="position:absolute; top:43%; left:68%; width:32%; font-size:6.2vw;">90</div>
+			<div style="position:absolute; top:44%; left:87%; width:13%; color:#9B9B9B;">元</div>
+		</div>
+		<div style="height:21%; border-bottom:#9B9B9B 1px solid;">
+			<div style="position:absolute; top:64%; left:18%; width:82%; font-size:5.8vw;">2015/04/23 09:50~11:50</div>
+		</div>
+		<ons-button class="my-button" style="position:absolute; top:80%; left:0%; width:100%; height:20%; text-align:center; padding-top:3%; font-size:5vw; color:#84B818; border-bottom:#9B9B9B 1px solid;" onclick="submit_btn_click()">
+            確認
+        </ons-button>
+	</div>
+
+<!--
+</ons-page>
+-->
+
+<style>
+#googleMap2{
+	position: absolute;
+	max-width: 100%;
+	max-height: 49%;
+	top:51%;
+}
+.labels {
+	 color: white;
+	 background-color: red;
+	 font-family: "Lucida Grande", "Arial", sans-serif;
+	 font-size: 10px;
+	 text-align: center;
+	 width: 10px;     
+	 white-space: nowrap;
+}
+</style>
+
+<script>
+
+var search_hours = localStorage.getItem("search_hours");
+if(search_hours == null)    search_hours = 2;
+search_hours = Math.floor(search_hours / 2) * 2;
+if(search_hours < 2)		search_hours = 2;
+if(search_hours > 8)        search_hours = 8;
+
+
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+var infos2 = {};
+infos2[0] =  [25.055208, 121.616271, "南港路一段", 	"A001", 2, 30];
+infos2[1] =  [25.054232, 121.617352, "富康街", 		"B001", 2, 40];
+infos2[2] =  [25.055332, 121.615175, "南港路一段", 	"A002", 2, 50];
+infos2[3] =  [25.056192, 121.617010, "經貿二路", 	"C001", 2, 60];
+infos2[4] =  [25.054917, 121.615254, "中南街", 		"D001", 4, 30];
+infos2[5] =  [25.054503, 121.616096, "市民大道", 	"E001", 4, 40];
+infos2[6] =  [25.054879, 121.616486, "研究院路一段", "D001", 4, 50];
+infos2[7] =  [25.054833, 121.616674, "研究院路一段", "D002", 4, 60];
+infos2[8] =  [25.055181, 121.616941, "南港路一段", 	"A003", 6, 30];
+infos2[9] =  [25.055842, 121.614011, "三重路", 		"E001", 6, 40];
+infos2[10] = [25.055207, 121.615788, "南港路一段", 	"A004", 6, 50];
+infos2[11] = [25.056723, 121.614018, "三重路", 		"E002", 6, 60];
+infos2[12] = [25.056947, 121.614560, "經貿二路", 	"C002", 8, 30];
+infos2[13] = [25.057542, 121.615398, "經貿二路", 	"C003", 8, 40];
+infos2[14] = [25.057639, 121.615870, "經貿二路", 	"C004", 8, 50];
+infos2[15] = [25.055504, 121.616533, "經貿二路", 	"C005", 8, 60];
+
+setTimeout(function() {
+
+	if(ons.platform.isIOS()) {
+		$("#info2_div").css("top", "9.6%");
+	    $("#googleMap2").css("max-height", "51.4%").css("top", "48.6%");
+	} else {
+		$("#info2_div").css("top", "6%");
+	    $("#googleMap2").css("max-height", "55%").css("top", "45%");
+	}
+
+	menu.setSwipeable(false);
+	
+	initialize();
+}, 10);
+
+function initialize() {
+
+	var myCenter = new google.maps.LatLng(25.0564669,121.6162776);
+
+	var mapProp = {
+		center:myCenter,
+		zoom:17,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("googleMap2"),mapProp);
+	
+	// 目前位置
+	var marker = new google.maps.Marker({
+		position: myCenter,
+		icon: 'images/icon_map.png'
+	});
+	marker.setMap(map);
+
+	// 路徑導航
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	directionsDisplay.setMap(map);
+    
+    var index = localStorage.getItem("google_map_nav_to");
+
+    var count = 0;
+	for(var key in infos2){ 
+
+		if(infos2[key][4] != search_hours)	continue;
+
+		if(count == index) {
+
+            $("#info_road_div").text(infos2[key][2]);
+    	    $("#info_area_div").text(infos2[key][3]);
+            $("#info_hours_div").text(infos2[key][4]);
+            $("#info_price_div").text(infos2[key][5]);
+
+			var start = new google.maps.LatLng(25.0564669,121.6162776);
+			var end = new google.maps.LatLng(infos2[key][0], infos2[key][1]);
+			calcRoute(start, end);
+
+			break;
+		}
+
+		count++;
+	}
+}
+
+// 路徑導航
+function calcRoute(start, end) {
+
+	var request = {
+		origin: start,
+		destination: end,
+		travelMode: google.maps.DirectionsTravelMode.DRIVING
+	};
+	
+	directionsService.route(request, function(response, status) {
+		if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(response);
+		}
+	});
+}
+
+function submit_btn_click() {
+
+	ons.notification.confirm({
+		title: '',
+		message: '確定預約此車位',
+		modifier: "tappable",
+		buttonLabels: ["取消", "確認"],
+		callback: function(idx) {
+			switch (idx) {
+				case 0:
+					break;
+				case 1:
+                    
+                    var dd = new Date();
+                    dd.setMinutes(dd.getMinutes() + 15);
+                    localStorage.setItem("countdown_time", dd.getTime());
+
+					myNavigator.pushPage('park-3.html');
+					break;
+			}
+		}
+	});
+}
+</script>

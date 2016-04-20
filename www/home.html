@@ -1,11 +1,11 @@
 
 <ons-navigator title="Navigator" var="myNavigator" >
 
-	<ons-page modifier="home" style="background:#84B818;">
+	<ons-page modifier="home">
 
 		<!-- toolbar -->
 		<ons-toolbar class="my-toolbar" style="background:#84B818;">
-			<div class="left" style="position:absolute; width:25%; left:0%;">
+			<div class="left" style="position:absolute; width:25%; left:0%; padding:0;">
 				<ons-toolbar-button onclick="menu.toggleMenu()">
 					<ons-icon icon="ion-navicon" style="font-size: 32px; width: 1em;"></ons-icon>
 				</ons-toolbar-button>
@@ -13,22 +13,19 @@
 			<div class="center" style="position:absolute; width:50%; left:25%;">
 				<span style="color:#FFF;">停車接龍</span>
 			</div>
-			<div class="right" style="position:absolute; width:25%; right:2%;">
-			</div>
+			<div class="right" style="position:absolute; width:25%; right:2%;"></div>
 		</ons-toolbar>
 
-		<div class="login-form" style="margin:auto;">
-			<img src="images/icon_login.png" style="width:35%; position:absolute; top:13.4%; left:32.2%;" />
-			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:34.5%; left:28%; width:53%; height:30%;" onclick="myNavigator.pushPage('park-1.html')">
-				<img src="images/btn_home_park_n.png" style="width:100%; position:absolute; left:0; top:0;" />
-			</ons-button>
-			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:48%; left:0%; width:38%; height:30%;" onclick="myNavigator.pushPage('search-1.html')">
-				<img src="images/btn_home_search_n.png" style="width:100%; position:absolute; left:0; top:0;" />
-			</ons-button>
-			<ons-button class="my-button" modifier="large--quiet" style="position:absolute; top:63.2%; left:28%; width:54%; height:30%;" onclick="myNavigator.pushPage('monitor.html')">
-				<img src="images/btn_home_monitor_n.png" style="width:100%; position:absolute; left:0; top:0;" />
-			</ons-button>
-		</div>
+		<img src="images/icon_login.png" style="width:35%; position:absolute; top:13.4%; left:32.2%;" />
+		<ons-button modifier="large--quiet" style="position:absolute; top:34.5%; left:28%; width:53%; height:30%;" onclick="myNavigator.pushPage('park-1.html')">
+			<img src="images/btn_home_park_n.png" style="width:100%; position:absolute; left:0; top:0;" />
+		</ons-button>
+		<ons-button modifier="large--quiet" style="position:absolute; top:48%; left:0%; width:38%; height:30%;" onclick="myNavigator.pushPage('search-1.html')">
+			<img src="images/btn_home_search_n.png" style="width:100%; position:absolute; left:0; top:0;" />
+		</ons-button>
+		<ons-button modifier="large--quiet" style="position:absolute; top:63.2%; left:28%; width:54%; height:30%;" onclick="myNavigator.pushPage('monitor.html')">
+			<img src="images/btn_home_monitor_n.png" style="width:100%; position:absolute; left:0; top:0;" />
+		</ons-button>
 
 	</ons-page>
 
@@ -38,4 +35,28 @@
 </style>
 
 <script>
+var countdown_time = localStorage.getItem("countdown_time");
+if(countdown_time > 0) {
+
+    var date2 = new Date();
+    date2.setTime(countdown_time);
+
+    var date1 = new Date();
+
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffMinutes = Math.ceil(timeDiff / (1000 * 60)); 
+
+    if(diffMinutes > 0) {
+
+        ons.notification.alert({
+            message: '預約倒數'+diffMinutes+'分鐘',
+            buttonLabel: "確認",
+            callback: function(idx) {
+                myNavigator.pushPage('countdown.html');
+            }
+        });
+    }
+}
+
+
 </script>

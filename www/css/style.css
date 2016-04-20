@@ -15,6 +15,7 @@
 
 .page--singin__background, .page--home__background {
     background: #84B818;
+    border: 0;
 }
 
 .toolbar-button, .toolbar-button--outline, .toolbar-button--quiet {
@@ -36,5 +37,5 @@ ons-toolbar + .page__background + .page__content {
 	font-size:4.3vw;
 	color:#1E4B20;
 	background-color:RGBA(0,0,0,0);
+    border-radius: 0;
 }
-
