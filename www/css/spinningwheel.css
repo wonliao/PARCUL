@@ -89,7 +89,7 @@
 #sw-frame {
 	position:absolute; z-index:1000;
 	left:0; right:0; bottom:0;
-	height:219px;
+	height:215px;
 	border-width:16px;
 	-webkit-border-image:url(../images/sw-alpha.png) 16;
 }
